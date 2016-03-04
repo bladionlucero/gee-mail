@@ -7,15 +7,34 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
+
+		geemails.forEach(function(message) {
+		    var container = $('<div class="email"></div>');
+		    container.append('<li id = "date">' + 'Date: ' + message.date);
+		    container.append('<li id = "subject">' + 'Subject: ' + message.subject);
+		    container.append('<li id = "sender">' + 'Sender ' + message.sender + '<p>');
+		    container.append('<li id = "body">' + message.body + '<p>');
+		    $("body").append(container);
+		    $('li#body').hide();
+		    $( "li#subject" ).click(function() {
+				$( "li#body" ).show("slow");
+			})
+			$( "li#subject" ).dblclick(function() {
+				$( "li#body" ).hide("slow");
+			})
+		})
+
+
       };
+
     </script>
+
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
 		</div>
+		<div id = "content">
 		<h1>GEE-Mail</h1>
-		<div class="email"></div>
+		</div>
 	</body>
 </html>
