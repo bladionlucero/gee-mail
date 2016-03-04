@@ -8,6 +8,13 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
+        // var userName = prompt("Your name?")
+        // $("#main").append("Welcome back, ", userName + "!")
+
+        var inboxCount = geemails.length
+
+        $("#main").append("<p>" + "You have " + inboxCount + " emails in your inbox.")
+
 		geemails.forEach(function(message) {
 		    var container = $('<div class="email"></div>');
 		    container.append('<li id = "date">' + 'Date: ' + message.date);
