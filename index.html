@@ -11,15 +11,15 @@
         // var userName = prompt("Your name?")
         // $("#main").append("Welcome back, ", userName + "!")
 
-        var inboxCount = geemails.length
+        var emailTotal = geemails.length
 
-        $("#main").append("<p>" + "You have " + inboxCount + " emails in your inbox.")
+        $("#main").append("<p>" + "You have " + emailTotal + " emails in your inbox.")
 
 		geemails.forEach(function(message) {
 		    var container = $('<div class="email"></div>');
 		    container.append('<li id = "date">' + 'Date: ' + message.date);
 		    container.append('<li id = "subject">' + 'Subject: ' + message.subject);
-		    container.append('<li id = "sender">' + 'Sender ' + message.sender + '<p>');
+		    container.append('<li id = "sender">' + 'Sender: ' + message.sender + '<p>');
 		    container.append('<li id = "body">' + message.body + '<p>');
 		    $("body").append(container);
 		    $('li#body').hide();
@@ -31,6 +31,35 @@
 			})
 		})
 
+		var generateEmail = function(message){
+			var now = new Date();
+			var message = generateMessage(now);
+			var container = $('<div class="email"></div>');
+		    container.append('<li id = "date">' + 'Date: ' + message.date);
+		    container.append('<li id = "subject">' + 'Subject: ' + message.subject);
+		    container.append('<li id = "sender">' + 'Sender: ' + message.sender + '<p>');
+		    container.append('<li id = "body">' + message.body + '<p>');
+		    $("body").append(container);
+		    $('li#body').hide();
+		    $( "li#subject" ).click(function() {
+				$( "li#body" ).show("slow");
+			})
+			$( "li#subject" ).dblclick(function() {
+				$( "li#body" ).hide("slow");
+			})
+		};
+
+		function addNewMessage(){ 
+
+        var newMessage = getNewMessage();
+        console.log(getNewMessage()); 
+        generateEmail([newMessage]);  //my previous generateEmail function
+     
+        // emailTotal ++; //increment email count
+        // count.innerHTML = emailTotal;
+
+        }
+      	setInterval(addNewMessage, 5000); //adds new message every 5 seconds
 
       };
 
